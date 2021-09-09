@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// Write code here:
+// Variable "myList"
 const myList = (
   <ul>
     <li> Item 1 </li>
@@ -10,4 +10,5 @@ const myList = (
   </ul>
 );
 
+// Put "myList" into app
 ReactDOM.render(myList, document.getElementById('app'));

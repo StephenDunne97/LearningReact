@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// Write code here:
+// Put "Render me!" into "app"
 ReactDOM.render(<h1>Render me!</h1>, document.getElementById('app'));
