@@ -1,2 +1,2 @@
-# react_codecademy
+# Learning React
 Sample programs to showcase React principles
