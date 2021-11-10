@@ -13,6 +13,19 @@ const CardList = (props) => (
 );
 
 // Class component
+class Form extends React.Component {
+    render(){
+      return(
+        <form action="">
+          <input type="text" placeholder="GitHub Username"/>
+          <button>Add Card</button>
+        </form>
+      );
+    }
+  }
+  
+
+// Class component
 class Card extends React.Component {
     render() {
     const profile = this.props;
@@ -34,6 +47,7 @@ class App extends React.Component {
         // Wrapping components in a div to allow them to be displayed at the same time.
         <div>
             <div className="header">{this.props.title}</div>
+            <Form />
             <CardList />
         </div>
     );
