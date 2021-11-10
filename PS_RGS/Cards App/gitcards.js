@@ -31,7 +31,6 @@ class Form extends React.Component {
       );
     }
   }
-  
 
 // Class component
 class Card extends React.Component {
