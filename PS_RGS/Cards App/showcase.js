@@ -8,7 +8,7 @@ const testData = [
 // Function component
 const CardList = (props) => (
     <div>
-        {testData.map(profile => <Card {...profile}/>)}
+        {props.profiles.map(profile => <Card {...profile}/>)}
     </div>
 );
 
@@ -48,7 +48,7 @@ class App extends React.Component {
         <div>
             <div className="header">{this.props.title}</div>
             <Form />
-            <CardList />
+            <CardList profiles={testData}/>
         </div>
     );
     }
