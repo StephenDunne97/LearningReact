@@ -1,14 +1,7 @@
-
-const testData = [
-    {name: "Stephen Dunne", avatar_url: "https://avatars.githubusercontent.com/u/23324044?v=4", company: "SAP"},
-    {name: "Mark Zuckerberg", avatar_url: "https://avatars.githubusercontent.com/u/1891799?v=4", company: "Meta"},
-];
-
-
 // Function component
 const CardList = (props) => (
     <div>
-        {props.profiles.map(profile => <Card {...profile}/>)}
+        {props.profiles.map(profile => <Card key= {profile.id} {...profile}/>)}
     </div>
 );
 
@@ -18,9 +11,11 @@ class Form extends React.Component {
     state = {
         username: '',
     };
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(this.state.username);
+        const response = await axios.get(`https://api.github.com/users/${this.state.username}`);
+        this.props.onSubmit(response.data);
+        this.setState({ username: '' }); // Reset the input field to empty
     };
 
     render(){
@@ -59,12 +54,18 @@ class App extends React.Component {
     state = {
         profiles: testData,
     };
+
+    addNewProfile = (profileData) => {
+        this.setState(prevState => ({
+            profiles: [...prevState.profiles, profileData]
+        }))
+    };
     render() {
     return (
         // Wrapping components in a div to allow them to be displayed at the same time.
         <div>
             <div className="header">{this.props.title}</div>
-            <Form />
+            <Form onSubmit={this.addNewProfile}/>
             <CardList profiles={this.state.profiles}/>
         </div>
     );
