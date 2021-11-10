@@ -42,13 +42,17 @@ class Card extends React.Component {
 }
 
 class App extends React.Component {
+    // Adding a state to allow both the Form and CardList class componenets to access the testData 
+    state = {
+        profiles: testData,
+    };
     render() {
     return (
         // Wrapping components in a div to allow them to be displayed at the same time.
         <div>
             <div className="header">{this.props.title}</div>
             <Form />
-            <CardList profiles={testData}/>
+            <CardList profiles={this.state.profiles}/>
         </div>
     );
     }
