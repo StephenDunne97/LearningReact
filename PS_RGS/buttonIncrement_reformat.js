@@ -1,9 +1,11 @@
 // Function to show button which receives onClickFxn via its props
 function Button(props) { 
-    return (
+  // you can't do <button onClick={props.onClickFxn(props.incrementVal)} because this is not a reference to a function, it's an invocation.
+  const handleClick = () => props.onClickFxn(props.increment)  
+  return (
       // props.onClickFxn calls the incrementCounter function which can be seen in App()
-      <button onClick={props.onClickFxn}>
-        +1
+      <button onClick={handleClick}>
+        +props.increment
       </button>
     );
   }
@@ -20,10 +22,14 @@ function Button(props) {
     // To access "counter", its scope must be altered to be accessible by both the "Button" and "Dispay" components. Before, it was local to "Button" so "Display" could not access it.
     // Counter, setCounter, incrementCounter, can all be passed to App's child components
     const [counter, setCounter] = useState(0) // Getters and setters for the number of times the button has been clicked
-    const incrementCounter = () => setCounter(counter+1); // Fxn to increment counter
+    const incrementCounter = (incrementVal) => setCounter(counter + incrementVal); // Fxn to increment counter
     return(
       <div>
-        <Button onClickFxn={incrementCounter}/>
+        <Button onClickFxn={incrementCounter} increment = {1} />
+        <Button onClickFxn={incrementCounter} increment = {5} />
+        <Button onClickFxn={incrementCounter} increment = {10} />
+        <Button onClickFxn={incrementCounter} increment = {20} />
+        <Button onClickFxn={incrementCounter} increment = {50} />
         <Display message={counter} />
       </div>
     );
@@ -33,3 +39,4 @@ function Button(props) {
     <App />,
     document.getElementById('mountNode'),
   )
+  
